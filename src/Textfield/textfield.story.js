@@ -22,6 +22,7 @@ class TextfieldStory extends React.Component {
         cols={number('cols', 0)}
         textarea={boolean('textarea', false)}
         disabled={boolean('disabled', false)}
+        invalid={boolean('invalid', false)}
         value={text('value', this.state.value)}
         onChange={evt => this.onChange(evt)}
         label={text('label', 'Hello world')}

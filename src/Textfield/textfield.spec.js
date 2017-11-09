@@ -36,6 +36,11 @@ describe('Textfield', () => {
     expect(el.find('textarea').getDOMNode().value).toBe('hello world');
   });
 
+  it('can be marked invalid', () => {
+    const el = mount(<Textfield placeholder="test" value="hello world" invalid onChange={evt => {}} />);
+    expect(el.find('.mdc-textfield--invalid').length).toBe(1);
+  });
+
   it('can have custom classnames on input', () => {
     const el = mount(<Textfield className={'my-custom-classname'} />);
     expect(!!~el.html().search('my-custom-classname')).toEqual(true);

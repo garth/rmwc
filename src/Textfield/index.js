@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MDCTextfield } from '@material/textfield/dist/mdc.textfield';
-import classNames from 'classnames';
 import { propMeta } from '../Base/prop-meta';
 import { noop } from '../Base/noop';
 import MDCComponentBase from '../Base/mdc-component-base';
@@ -9,8 +8,14 @@ import simpleComponentFactory from '../Base/simple-component-factory';
 
 export const TextfieldRoot = simpleComponentFactory('TextfieldRoot', {
   tag: 'label',
-  classNames: props => ['mdc-textfield', { 'mdc-textfield--textarea': props.textarea }],
-  consumeProps: ['textarea']
+  classNames: props => [
+    'mdc-textfield',
+    {
+      'mdc-textfield--textarea': props.textarea,
+      'mdc-textfield--invalid': props.invalid
+    }
+  ],
+  consumeProps: ['textarea', 'invalid']
 });
 
 export const TextfieldLabel = simpleComponentFactory('TextfieldLabel', {
@@ -43,6 +48,7 @@ export class Textfield extends MDCComponentBase {
   static propTypes = {
     inputRef: PropTypes.func,
     disabled: PropTypes.bool,
+    invalid: PropTypes.bool,
     label: PropTypes.any,
     textarea: PropTypes.bool,
     ...MDCComponentBase.propTypes
@@ -51,6 +57,7 @@ export class Textfield extends MDCComponentBase {
   static defaultProps = {
     inputRef: noop,
     disabled: false,
+    invalid: false,
     label: undefined,
     textarea: undefined,
     ...MDCComponentBase.defaultProps
@@ -64,6 +71,10 @@ export class Textfield extends MDCComponentBase {
     disabled: {
       type: 'Boolean',
       desc: 'Disables the input.'
+    },
+    invalid: {
+      type: 'Boolean',
+      desc: 'Indicates that the value is not valid'
     },
     label: {
       type: 'Any',
@@ -83,7 +94,7 @@ export class Textfield extends MDCComponentBase {
   }
 
   render() {
-    const { label = '', className, inputRef, apiRef, children, textarea, ...rest } = this.props;
+    const { label = '', className, inputRef, apiRef, children, textarea, invalid, ...rest } = this.props;
 
     const tagProps = {
       elementRef: inputRef,
@@ -93,7 +104,12 @@ export class Textfield extends MDCComponentBase {
     const tag = textarea ? <TextfieldTextarea {...tagProps} /> : <TextfieldInput {...tagProps} />;
 
     return (
-      <TextfieldRoot className={className} textarea={textarea} elementRef={el => this.MDCSetRootElement(el)}>
+      <TextfieldRoot
+        className={className}
+        textarea={textarea}
+        invalid={invalid}
+        elementRef={el => this.MDCSetRootElement(el)}
+      >
         {children}
         {tag}
         <TextfieldLabel value={this.props.value}>{label}</TextfieldLabel>
