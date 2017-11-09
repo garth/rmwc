@@ -2,14 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const providerDefaults = {
-	buttonDefaultRipple: true,
-	iconPrefix: 'material-icons '
+  buttonDefaultRipple: true,
+  iconPrefix: 'material-icons '
 };
 
 export const getProviderOptions = context => {
-	return context && context.RMWCOptions
-		? context.RMWCOptions
-		: providerDefaults;
+  return context && context.RMWCOptions ? context.RMWCOptions : providerDefaults;
 };
 
 /**
@@ -20,36 +18,36 @@ export const getProviderOptions = context => {
  * @extends {React.Component}
  */
 export class RMWCProvider extends React.Component {
-	static childContextTypes = {
-		RMWCOptions: PropTypes.object
-	};
+  static childContextTypes = {
+    RMWCOptions: PropTypes.object
+  };
 
-	static propTypes = {
-		RMWCOptions: PropTypes.object
-	};
+  static propTypes = {
+    RMWCOptions: PropTypes.object
+  };
 
-	constructor(props, ...args) {
-		super(props, ...args);
-		this.options = this.buildOptions(props);
-	}
+  constructor(props, ...args) {
+    super(props, ...args);
+    this.options = this.buildOptions(props);
+  }
 
-	componentWillUpdate(nextProps) {
-		this.options = this.buildOptions(nextProps);
-	}
+  componentWillUpdate(nextProps) {
+    this.options = this.buildOptions(nextProps);
+  }
 
-	buildOptions(props) {
-		return Object.assign({}, providerDefaults, props || {});
-	}
+  buildOptions(props) {
+    return Object.assign({}, providerDefaults, props || {});
+  }
 
-	getChildContext() {
-		return {
-			RMWCOptions: this.options
-		};
-	}
+  getChildContext() {
+    return {
+      RMWCOptions: this.options
+    };
+  }
 
-	render() {
-		return this.props.children;
-	}
+  render() {
+    return this.props.children;
+  }
 }
 
 export default RMWCProvider;

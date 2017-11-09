@@ -40,7 +40,14 @@
     "build-storybook": "build-storybook",
     "preversion": "npm test -- --coverage",
     "version": "npm run build:lib && git add -A lib && npm run changelog && git add CHANGELOG.md",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "fix": "prettier --write \"src/**/*.js\""
+  },
+  "prettier": {
+    "semi": true,
+    "printWidth": 120,
+    "singleQuote": true,
+    "jsxBracketSameLine": false
   },
   "jest": {
     "collectCoverageFrom": [
@@ -163,6 +170,7 @@
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.6",
+    "prettier": "^1.8.2",
     "promise": "8.0.1",
     "react": "^16.0.0",
     "react-addons-test-utils": "^15.6.2",

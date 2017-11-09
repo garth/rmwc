@@ -6,27 +6,24 @@ import { number } from '@storybook/addon-knobs';
 import { Tab, TabBar } from './';
 
 class TabBarStory extends React.Component {
-	state = {
-		activeTabIndex: 0
-	};
+  state = {
+    activeTabIndex: 0
+  };
 
-	onChange(evt) {
-		this.setState({ activeTabIndex: evt.target.value });
-		action('activeTabIndex: ' + evt.target.value)();
-	}
+  onChange(evt) {
+    this.setState({ activeTabIndex: evt.target.value });
+    action('activeTabIndex: ' + evt.target.value)();
+  }
 
-	render() {
-		return (
-			<TabBar
-				activeTabIndex={number('activeTabIndex', this.state.activeTabIndex)}
-				onChange={evt => this.onChange(evt)}
-			>
-				<Tab>Cookies</Tab>
-				<Tab>Pizza</Tab>
-				<Tab>Icecream</Tab>
-			</TabBar>
-		);
-	}
+  render() {
+    return (
+      <TabBar activeTabIndex={number('activeTabIndex', this.state.activeTabIndex)} onChange={evt => this.onChange(evt)}>
+        <Tab>Cookies</Tab>
+        <Tab>Pizza</Tab>
+        <Tab>Icecream</Tab>
+      </TabBar>
+    );
+  }
 }
 
 storiesOf('Tabs', module).add('TabBar', () => <TabBarStory />);

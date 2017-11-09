@@ -8,11 +8,7 @@ import { Fab } from './';
 // storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
 storiesOf('Buttons', module).add('Fab', () => (
-	<Fab
-		mini={boolean('mini', false)}
-		ripple={boolean('ripple', true)}
-		onClick={action('clicked')}
-	>
-		favorite
-	</Fab>
+  <Fab mini={boolean('mini', false)} ripple={boolean('ripple', true)} onClick={action('clicked')}>
+    favorite
+  </Fab>
 ));

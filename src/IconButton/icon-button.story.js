@@ -6,8 +6,8 @@ import { boolean } from '@storybook/addon-knobs';
 import { IconButton } from './';
 
 storiesOf('Buttons', module).add('IconButton', () => (
-	<div>
-		<IconButton>favorite</IconButton>
-		<IconButton use="favorite_outline" />
-	</div>
+  <div>
+    <IconButton>favorite</IconButton>
+    <IconButton use="favorite_outline" />
+  </div>
 ));
