@@ -1,10 +1,5 @@
 **/*.spec.js
 **/*.story.js
-build/
-config/
 coverage/
-docs/
-public/
 src/
-scripts/
-jsconfig.json
+test/
